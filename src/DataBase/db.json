@@ -1,0 +1,28 @@
+{
+    "courses" : [
+        {
+            "id" : "1",
+            "course_name" : "HTML",
+            "price" : "10000"
+        },
+        {
+            "id" : "2",
+            "course_name" : "CSS",
+            "price" : "5000"
+        },{
+            "id" : "3",
+            "course_name" : "JS",
+            "price" : "30000"
+        },
+        {
+            "id" : "4",
+            "course_name" : "React JS",
+            "price" : "50000"
+        },
+        {
+            "id" : "5",
+            "course_name" : "Node JS",
+            "price" : "30000"
+        }
+    ]
+}

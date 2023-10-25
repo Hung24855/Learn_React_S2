@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Users from "./components/Users/Users";
+import DetailUser from "./components/Users/DetailUser";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.render(
         <Route path="/" element={<App />}>
           <Route path="/users" element={<Users></Users>}></Route>
           <Route index element={<Home></Home>}></Route>
+          <Route path="/users/:id" element={<DetailUser></DetailUser>}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

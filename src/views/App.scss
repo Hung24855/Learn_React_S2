@@ -1,7 +1,9 @@
-.App {
-  text-align: center;
-}
 
+
+.background_nav 
+{
+  background: rgb(224, 222, 222);
+}
 .App-logo {
   height: 5vmin;
   pointer-events: none;
@@ -13,16 +15,7 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+
 
 .App-link {
   color: #61dafb;
@@ -35,4 +28,18 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.Home_page 
+{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.Detail_User {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
