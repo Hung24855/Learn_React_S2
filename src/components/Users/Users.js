@@ -1,8 +1,7 @@
-import React from "react";
 import Table from "react-bootstrap/Table";
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useFetchData from "../../customhook/fetchData";
+import { useState } from "react";
 
 const Users = () => {
   // fetch("https://jsonplaceholder.typicode.com/users")
@@ -12,26 +11,12 @@ const Users = () => {
   //   .then((data) => {
   //     console.log(data);
   //   });
-  const [Users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [isError, setError] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let res = await axios.get("https://jsonplaceholder.typicode.com/users");
-        let data = res && res.data ? res.data : [];
-        setUsers(data);
-        setLoading(false);
-      } catch (error) {
-        setError(true);
-        setLoading(false);
-      }
-    };
-    setTimeout(() => {
-      fetchData();
-    }, 1000);
-  }, []);
+  const {
+    Data: Users,
+    loading,
+    isError,
+  } = useFetchData("https://jsonplaceholder.typicode.com/users");
 
   return (
     <>
