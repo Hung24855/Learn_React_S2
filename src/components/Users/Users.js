@@ -13,6 +13,8 @@ const Users = () => {
   //     console.log(data);
   //   });
   const [Users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,16 +22,20 @@ const Users = () => {
         let res = await axios.get("https://jsonplaceholder.typicode.com/users");
         let data = res && res.data ? res.data : [];
         setUsers(data);
+        setLoading(false);
       } catch (error) {
-        console.error("Lỗi API !");
+        setError(true);
+        setLoading(false);
       }
     };
-
-    fetchData();
+    setTimeout(() => {
+      fetchData();
+    }, 1000);
   }, []);
 
   return (
     <>
+      <h1 style={{ textAlign: "center" }}>Danh sách người dùng</h1>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -40,23 +46,42 @@ const Users = () => {
           </tr>
         </thead>
         <tbody>
-          {Users.map((user, index) => {
-            return (
-              <tr key={user.id}>
-                <td>
-                  <Link
-                    to={`/users/${user.id}`}
-                    style={{ textDecoration: "None" }}
-                  >
-                    {user.id}
-                  </Link>
-                </td>
-                <td>{user.name}</td>
-                <td>{user.username}</td>
-                <td>{user.email}</td>
-              </tr>
-            );
-          })}
+          {loading === false &&
+            Users &&
+            Users.length > 0 &&
+            Users.map((user, index) => {
+              return (
+                <tr key={user.id}>
+                  <td>
+                    <Link
+                      to={`/users/${user.id}`}
+                      style={{ textDecoration: "None" }}
+                    >
+                      {user.id}
+                    </Link>
+                  </td>
+                  <td>{user.name}</td>
+                  <td>{user.username}</td>
+                  <td>{user.email}</td>
+                </tr>
+              );
+            })}
+
+          {loading === true && (
+            <tr>
+              <td colSpan={4} style={{ textAlign: "center" }}>
+                Loading ....
+              </td>
+            </tr>
+          )}
+
+          {isError === true && (
+            <tr>
+              <td colSpan={4} style={{ textAlign: "center" }}>
+                Something wrong ....
+              </td>
+            </tr>
+          )}
         </tbody>
       </Table>
     </>
