@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 const DetailUser = () => {
   const { id } = useParams();
   const [User, setUser] = useState({});
@@ -34,6 +35,11 @@ const DetailUser = () => {
         <li className="Detail-info">Phone - {User.phone}</li>
         <li className="Detail-info">Website - {User.website}</li>
       </ul>
+      <button>
+        <Link to="/users" style={{ textDecoration: "None", color: "black" }}>
+          Back
+        </Link>
+      </button>
     </div>
   );
 };

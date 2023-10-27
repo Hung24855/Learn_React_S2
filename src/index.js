@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Users from "./components/Users/Users";
 import DetailUser from "./components/Users/DetailUser";
+import Youtobe from "./components/Youtobe_Search/Youtobe";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.render(
           <Route path="/users" element={<Users></Users>}></Route>
           <Route index element={<Home></Home>}></Route>
           <Route path="/users/:id" element={<DetailUser></DetailUser>}></Route>
+          <Route path="/youtobe" element={<Youtobe></Youtobe>}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

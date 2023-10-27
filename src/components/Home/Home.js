@@ -2,21 +2,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 const Home = () => {
+  const getData_Local_storage = JSON.parse(localStorage.getItem("jobs"));
   const [Name, SetName] = useState("");
-  const [listTodo, SetListTodo] = useState([
-    {
-      id: 1,
-      name: "HTML",
-    },
-    {
-      id: 2,
-      name: "CSS",
-    },
-    {
-      id: 3,
-      name: "JS",
-    },
-  ]);
+  const [listTodo, SetListTodo] = useState(getData_Local_storage);
 
   const handleAddTodo = () => {
     if (!Name) {
@@ -28,12 +16,20 @@ const Home = () => {
       id: listTodo.length + 1,
       name: Name,
     };
-    SetListTodo([...listTodo, newTodo]);
+
+    const data = [...listTodo, newTodo];
+    const JSON_Data = JSON.stringify(data);
+    localStorage.setItem("jobs", JSON_Data);
+    SetListTodo(data);
     SetName("");
   };
 
   const handleDeleteTodo = (todo) => {
-    SetListTodo(listTodo.filter((item) => item.id !== todo.id));
+    const filter_data = listTodo.filter((item) => item.id !== todo.id);
+    console.log(filter_data);
+    const JSON_Data = JSON.stringify(filter_data);
+    localStorage.setItem("jobs", JSON_Data);
+    SetListTodo(filter_data);
   };
 
   useEffect(() => {}, [Name, listTodo]);
