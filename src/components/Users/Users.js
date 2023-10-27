@@ -1,7 +1,6 @@
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 import useFetchData from "../../customhook/fetchData";
-import { useState } from "react";
 
 const Users = () => {
   // fetch("https://jsonplaceholder.typicode.com/users")
