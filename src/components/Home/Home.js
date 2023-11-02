@@ -2,9 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 const Home = () => {
-  const getData_Local_storage = JSON.parse(localStorage.getItem("jobs"));
   const [Name, SetName] = useState("");
-  const [listTodo, SetListTodo] = useState(getData_Local_storage);
+  const [listTodo, SetListTodo] = useState(
+    JSON.parse(localStorage.getItem("jobs"))
+  );
 
   const handleAddTodo = () => {
     if (!Name) {

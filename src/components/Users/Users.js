@@ -1,15 +1,11 @@
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 import useFetchData from "../../customhook/fetchData";
-
+import AddNewUser from "./Add_User";
+import { useState, useEffect } from "react";
 const Users = () => {
-  // fetch("https://jsonplaceholder.typicode.com/users")
-  //   .then((res) => {
-  //     return res.json();
-  //   })
-  //   .then((data) => {
-  //     console.log(data);
-  //   });
+  const [Show, setShow] = useState(false);
+  const [ListUser, setListUser] = useState([]);
 
   const {
     Data: Users,
@@ -17,9 +13,39 @@ const Users = () => {
     isError,
   } = useFetchData("https://jsonplaceholder.typicode.com/users");
 
+  useEffect(() => {
+    //Chay truoc khi component goi API xong
+    if (Users && Users.length > 0) {
+      setListUser(Users);
+    }
+  }, [Users]);
+
+  const handleShow = () => {
+    Show ? setShow(false) : setShow(true);
+  };
+
+  const handleAdd_User = (user) => {
+    const newUser = { id: ListUser.length + 1, ...user };
+    const newData = [...ListUser, newUser];
+    setListUser(newData);
+  };
   return (
     <>
       <h1 style={{ textAlign: "center" }}>Danh sách người dùng</h1>
+      <button
+        style={{
+          marginBottom: "20px",
+          marginLeft: "150px",
+          borderRadius: "5px",
+          textDecoration: "none",
+          cursor: "pointer",
+          color: "black",
+        }}
+        onClick={handleShow}
+      >
+        Add User
+      </button>
+      {Show && <AddNewUser addUser={handleAdd_User} />}
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -31,9 +57,9 @@ const Users = () => {
         </thead>
         <tbody>
           {loading === false &&
-            Users &&
-            Users.length > 0 &&
-            Users.map((user, index) => {
+            ListUser &&
+            ListUser.length > 0 &&
+            ListUser.map((user, index) => {
               return (
                 <tr key={user.id}>
                   <td>
