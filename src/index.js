@@ -9,6 +9,7 @@ import Home from "./components/Home/Home";
 import Users from "./components/Users/Users";
 import DetailUser from "./components/Users/DetailUser";
 import Youtobe from "./components/Youtobe_Search/Youtobe";
+import NotFound from "./views/NotFound";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -18,6 +19,7 @@ ReactDOM.render(
         <Route index element={<Home></Home>}></Route>
         <Route path="/users/:id" element={<DetailUser></DetailUser>}></Route>
         <Route path="/youtobe" element={<Youtobe></Youtobe>}></Route>
+        <Route path="*" element={<NotFound></NotFound>}></Route>
       </Route>
     </Routes>
   </BrowserRouter>,
